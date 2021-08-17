@@ -1,0 +1,36 @@
+{% load static %}
+{% load comments_tree %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'comments/css/bootstrap.min.css' %}">
+</head>
+<body>
+
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    {{ comments|comments_filter }}
+    <hr>
+    <div class="col-md-12">
+      {# Форма создания нового (первичного) комментария, не ответа к другому комментарию #}
+      <form action="{% url 'comment_create' %}" method="post">
+        {% csrf_token %}
+        {{ comment_form|crispy }}
+        <input type="submit" class="btn btn-primary" value="Отправить">
+      </form>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
+<script src="{% static 'comments/js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'comments/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'comments/js/base.js' %}"></script>
+
+</body>
+</html>
