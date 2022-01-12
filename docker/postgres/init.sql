@@ -1,0 +1,4 @@
+CREATE USER admin_test WITH PASSWORD '123456devpass';
+
+CREATE DATABASE my_prod_db;
+GRANT ALL PRIVILEGES ON DATABASE my_prod_db TO admin_test;
